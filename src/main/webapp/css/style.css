@@ -1,0 +1,32 @@
+/* ── En-tête officiel ── */
+.entete-officiel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: white;
+    border-bottom: 2px solid #1a3c5e;
+    font-family: 'Times New Roman', serif;
+}
+
+.entete-gauche,
+.entete-droite {
+    flex: 1;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1.8;
+}
+
+.entete-droite { text-align: right; }
+
+.entete-centre {
+    flex: 0 0 120px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.entete-officiel .separateur {
+    color: #1a3c5e;
+    font-size: 10px;
+}
