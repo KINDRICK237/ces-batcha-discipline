@@ -243,7 +243,7 @@
 
             <div class="bienvenue">
                 <h2>Bienvenue, <%= utilisateur.getNomComplet() %> 👋</h2>
-                <p>Tableau de bord — Année scolaire 2024-2025</p>
+                <p>Tableau de bord — Année scolaire 2025-2026</p>
             </div>
 
             <div class="grille-stats">

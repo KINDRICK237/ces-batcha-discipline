@@ -179,7 +179,7 @@
         </div>
 
         <div class="carte-pied">
-            &copy; 2024-2025 CES de Batcha — Tous droits réservés
+            &copy; 2025-2026 CES de Batcha — Tous droits réservés
         </div>
 
     </div>

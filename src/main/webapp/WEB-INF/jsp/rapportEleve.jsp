@@ -418,7 +418,7 @@
                 <!-- Titre -->
                 <div class="titre-rapport">
                     <h2>Rapport d'Assiduité — Élève</h2>
-                    <p>Année scolaire 2024-2025</p>
+                    <p>Année scolaire 2025-2026</p>
                 </div>
 
                 <!-- Infos élève -->
