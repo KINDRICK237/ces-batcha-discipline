@@ -364,6 +364,19 @@
             font-size: 14px;
             cursor: pointer;
         }
+        
+        .btn-marquer-present {
+    padding: 9px 20px;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-marquer-present:hover { background: #0d47a1; }
+
     </style>
 </head>
 <body>
@@ -457,13 +470,21 @@
                         <input type="hidden" name="classeId" value="<%= classeId %>"/>
 
                         <div class="carte-tableau-entete">
-                            <h3>Liste des élèves</h3>
-                            <% if (utilisateur.isAdmin()) { %>
-                            <button type="submit" class="btn-enregistrer-tout">
-                                ✅ Enregistrer tout
-                            </button>
-                            <% } %>
-                        </div>
+    <h3>Liste des élèves</h3>
+    <% if (utilisateur.isAdmin()) { %>
+    <div style="display:flex; gap:10px;">
+        <button type="button"
+                class="btn-marquer-present"
+                onclick="marquerRestePresent()">
+            ✅ Marquer le reste présent
+        </button>
+        <button type="submit"
+                class="btn-enregistrer-tout">
+            💾 Enregistrer tout
+        </button>
+    </div>
+    <% } %>
+</div>
 
                         <table>
                             <thead>
@@ -867,6 +888,59 @@
     document.getElementById('modalOverlay').addEventListener('click', function(e) {
         if (e.target === this) fermerModal();
     });
+    
+    function marquerRestePresent() {
+        // Récupérer tous les élèves
+        var eleveIds = document.querySelectorAll(
+                'input[name="eleveId"]');
+
+        eleveIds.forEach(function(input) {
+            var eleveId = input.value;
+            var statutInput = document.getElementById(
+                    'statut_' + eleveId);
+
+            // Si le statut n'est pas encore défini
+            // ou est déjà PRESENT → ne pas changer
+            // Si ABSENT ou RETARD → ne pas changer
+            // Sinon → marquer PRESENT
+            if (statutInput.value === 'PRESENT'
+                    || statutInput.value === '') {
+
+                // Trouver la ligne de cet élève
+                var row = input.closest('tr');
+                var boutons = row.querySelectorAll('.radio-btn');
+
+                // Mettre à jour le statut
+                statutInput.value = 'PRESENT';
+
+                // Mettre à jour les boutons visuellement
+                boutons.forEach(function(b) {
+                    b.classList.remove('selectionne');
+                });
+
+                // Sélectionner le bouton Présent
+                var btnPresent = row.querySelector(
+                        '.radio-btn.present');
+                if (btnPresent) {
+                    btnPresent.classList.add('selectionne');
+                }
+
+                // Vider le badge détail
+                var detail = document.getElementById(
+                        'detail_' + eleveId);
+                if (detail) {
+                    detail.innerHTML =
+                        '<span style="color:#90a4ae;'
+                        + 'font-size:12px;">—</span>';
+                }
+            }
+        });
+
+        // Message de confirmation
+        alert('✅ Tous les élèves sans statut ont été'
+            + ' marqués présents !\n'
+            + 'Cliquez sur "Enregistrer tout" pour sauvegarder.');
+    }
     </script>
 
 </body>
