@@ -15,7 +15,7 @@ import java.util.List;
 
 public class PresenceDAO {
 
-    // ── Enregistrer une présence ───────────────────────────────────
+    // ── Enregistrer les présences ───────────────────────────────────
     public void enregistrer(Presence p) throws SQLException {
 
         String sql = "INSERT INTO presences "
